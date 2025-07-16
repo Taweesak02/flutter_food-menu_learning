@@ -18,75 +18,87 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.amber[100],
         appBar: AppBar(
+          leading: Icon(Icons.menu_book_rounded),
           title: Text("The Food Menu"),
           backgroundColor: Colors.amberAccent,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FoodSection(titleName: "อาหารทั่วไป"),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  spacing: 30,
-                  children: [
-                    BoxMenu(
-                      name: "พะโล้",
-                      price: 20.00,
-                      picture: "assets/menu1.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไก่ทอด",
-                      price: 80.00,
-                      picture: "assets/menu2.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                    BoxMenu(
-                      name: "ไข่เจียว",
-                      price: 20.00,
-                      picture: "assets/menu3.jpg",
-                    ),
-                  ],
-                ),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MenuSection(
+                name: "อาหารทั่วไป",
+                menu: [
+                  BoxMenu(
+                    name: "พะโล้",
+                    price: 30,
+                    picture: "assets/menu1.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ไก่ทอด",
+                    price: 50,
+                    picture: "assets/menu2.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ไข่เจียว",
+                    price: 20,
+                    picture: "assets/menu3.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ผัดกะเพรา",
+                    price: 30,
+                    picture: "assets/menu4.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ข้าวผัด",
+                    price: 40,
+                    picture: "assets/menu5.jpg",
+                  ),
+                ],
               ),
-            ),
-          ],
+              MenuSection(
+                name: "ของหวาน",
+                menu: [
+                  BoxMenu(
+                    name: "ไอศกรีม",
+                    price: 20,
+                    picture: "assets/menu6.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ข้าวเหนียวมะม่วง",
+                    price: 35,
+                    picture: "assets/menu7.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ปาท่องโก๋",
+                    price: 20,
+                    picture: "assets/menu8.jpg",
+                  ),
+                  BoxMenu(
+                    name: "บราวนี",
+                    price: 20,
+                    picture: "assets/menu9.jpg",
+                  ),
+                ],
+              ),
+              MenuSection(
+                name: "เครื่องดื่ม",
+                menu: [
+                  BoxMenu(
+                    name: "น้ำเปล่า",
+                    price: 10,
+                    picture: "assets/menu10.jpg",
+                  ),
+                  BoxMenu(
+                    name: "โกโก้โอริโอ้ปั่น",
+                    price: 35,
+                    picture: "assets/menu11.jpg",
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -101,7 +113,13 @@ class FoodSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(padding: const EdgeInsets.fromLTRB(20,50,0,0), child: Text(titleName,style:TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 50, 0, 0),
+          child: Text(
+            titleName,
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+        ),
       ],
     );
   }
@@ -140,30 +158,98 @@ class BoxMenu extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Row(
-              spacing: 70,
               children: [
-                Column(
-                  spacing: 12,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(name,style:TextStyle(fontWeight:FontWeight.bold,fontSize: 15)),
-                    Row(
-                      spacing: 5,
-                      children: [
-                      Text(price.toStringAsFixed(2),style: TextStyle(fontSize: 20),),
-                      Text("฿",style: TextStyle(fontSize: 20),)
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    spacing: 12,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Row(
+                        spacing: 5,
+                        children: [
+                          Text(
+                            price.toStringAsFixed(2),
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Text("฿", style: TextStyle(fontSize: 20)),
+                        ],
+                      ),
                     ],
-                  )],
+                  ),
                 ),
-                Text("Buy"),
-              
+                Expanded(flex: 1, child: const BuyItem()),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class MenuSection extends StatelessWidget {
+  const MenuSection({super.key, required this.name, required this.menu});
+
+  final String name;
+  final List<BoxMenu> menu;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FoodSection(titleName: name),
+        Container(
+          padding: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(spacing: 30, children: menu),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class BuyItem extends StatefulWidget {
+  const BuyItem({super.key});
+
+  @override
+  State<BuyItem> createState() => _BuyItemState();
+}
+
+class _BuyItemState extends State<BuyItem> {
+  bool _isbought = false;
+
+  void _togglebought() {
+    setState(() {
+      if (_isbought) {
+        _isbought = false;
+      } else {
+        _isbought = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      padding: EdgeInsets.zero,
+      icon:
+          (_isbought
+              ? Icon(color: Colors.green, Icons.add_box, size: 50)
+              : Icon(Icons.add_box_outlined, size: 50)),
+      onPressed: _togglebought,
     );
   }
 }
