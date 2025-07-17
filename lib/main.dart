@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Menu Program',
       home: Scaffold(
-        backgroundColor: Colors.amber[100],
+        backgroundColor: const Color.fromARGB(255, 255, 213, 96),
         appBar: AppBar(
           leading: Icon(Icons.menu_book_rounded),
-          title: Text("The Food Menu"),
-          backgroundColor: Colors.amberAccent,
+          title: Text("The Food Menu",style:TextStyle(fontWeight: FontWeight.bold),),
+          backgroundColor: Colors.amber[800],
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -111,16 +111,23 @@ class FoodSection extends StatelessWidget {
   final String titleName;
 
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 50, 0, 0),
-          child: Text(
-            titleName,
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text(
+              titleName,
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
