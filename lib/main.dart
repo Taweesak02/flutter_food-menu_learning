@@ -16,11 +16,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Menu Program',
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 213, 96),
         appBar: AppBar(
-          leading: Icon(Icons.menu_book_rounded),
-          title: Text("The Food Menu",style:TextStyle(fontWeight: FontWeight.bold),),
-          backgroundColor: Colors.amber[800],
+          leading: Icon(Icons.menu_book_rounded, color: Colors.white),
+          title: Text(
+            "The Food Menu",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          backgroundColor: const Color.fromARGB(255, 255, 213, 96),
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -150,7 +152,7 @@ class BoxMenu extends StatelessWidget {
       width: 200,
       height: 230,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(255, 227, 227, 223),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
