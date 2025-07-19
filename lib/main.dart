@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,13 +15,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Menu Program',
       home: Scaffold(
+        backgroundColor: Colors.amber[300],
         appBar: AppBar(
-          leading: Icon(Icons.menu_book_rounded, color: Colors.white),
+          leading: Icon(Icons.menu_book_rounded),
           title: Text(
             "The Food Menu",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          backgroundColor: const Color.fromARGB(255, 255, 213, 96),
+          backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -35,27 +35,32 @@ class MyApp extends StatelessWidget {
                   BoxMenu(
                     name: "พะโล้",
                     price: 30,
-                    picture: "assets/menu1.jpg",
+                    picture: "assets/common/menu1.jpg",
                   ),
                   BoxMenu(
                     name: "ไก่ทอด",
                     price: 50,
-                    picture: "assets/menu2.jpg",
+                    picture: "assets/common/menu2.jpg",
                   ),
                   BoxMenu(
                     name: "ไข่เจียว",
                     price: 20,
-                    picture: "assets/menu3.jpg",
+                    picture: "assets/common/menu3.jpg",
                   ),
                   BoxMenu(
                     name: "ผัดกะเพรา",
                     price: 30,
-                    picture: "assets/menu4.jpg",
+                    picture: "assets/common/menu4.jpg",
                   ),
                   BoxMenu(
                     name: "ข้าวผัด",
                     price: 40,
-                    picture: "assets/menu5.jpg",
+                    picture: "assets/common/menu5.jpg",
+                  ),
+                  BoxMenu(
+                    name: "ผัดไท",
+                    price: 35,
+                    picture: "assets/common/menu6.jpg",
                   ),
                 ],
               ),
@@ -65,22 +70,22 @@ class MyApp extends StatelessWidget {
                   BoxMenu(
                     name: "ไอศกรีม",
                     price: 20,
-                    picture: "assets/menu6.jpg",
+                    picture: "assets/dessert/menu1.jpg",
                   ),
                   BoxMenu(
                     name: "ข้าวเหนียวมะม่วง",
                     price: 35,
-                    picture: "assets/menu7.jpg",
+                    picture: "assets/dessert/menu2.jpg",
                   ),
                   BoxMenu(
                     name: "ปาท่องโก๋",
                     price: 20,
-                    picture: "assets/menu8.jpg",
+                    picture: "assets/dessert/menu3.jpg",
                   ),
                   BoxMenu(
                     name: "บราวนี",
                     price: 20,
-                    picture: "assets/menu9.jpg",
+                    picture: "assets/dessert/menu4.jpg",
                   ),
                 ],
               ),
@@ -90,12 +95,12 @@ class MyApp extends StatelessWidget {
                   BoxMenu(
                     name: "น้ำเปล่า",
                     price: 10,
-                    picture: "assets/menu10.jpg",
+                    picture: "assets/drink/menu1.jpg",
                   ),
                   BoxMenu(
                     name: "โกโก้โอริโอ้ปั่น",
                     price: 35,
-                    picture: "assets/menu11.jpg",
+                    picture: "assets/drink/menu2.jpg",
                   ),
                 ],
               ),
@@ -152,7 +157,7 @@ class BoxMenu extends StatelessWidget {
       width: 200,
       height: 230,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 227, 227, 223),
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
