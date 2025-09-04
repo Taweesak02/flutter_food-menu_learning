@@ -1,12 +1,35 @@
-import 'dart:ui';
+import 'package:menus/darktheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
+late bool isdarktheme;
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  
+  late final prefs;
+  @override
+  void initState() {
+    super.initState();
+    _isDarkThemeStatus();
+  }
+
+  Future<void> _isDarkThemeStatus() async {
+    prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      isdarktheme = prefs.getBool('isdarktheme') ?? false;
+    });
+  }
 
   // This widget is the root of your application.
   @override
@@ -15,14 +38,34 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Menu Program',
       home: Scaffold(
-        backgroundColor: Colors.amber[300],
+        backgroundColor: Darktheme().backgroundColor(isdarktheme),
         appBar: AppBar(
-          leading: Icon(Icons.menu_book_rounded),
-          title: Text(
-            "The Food Menu",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          leading: Icon(Icons.menu_book_rounded,color: Darktheme().fontColor(isdarktheme),),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "The Food Menu",
+                style: TextStyle(fontWeight: FontWeight.bold,color: Darktheme().fontColor(isdarktheme)),
+              ),
+              Row(
+                children: [
+                  Icon(Icons.sunny,color: Darktheme().fontColor(isdarktheme),),
+                  Switch(
+                    value: isdarktheme,
+                    onChanged: (value) async {
+                      setState(() {
+                        isdarktheme = value;
+                      });
+                      await prefs.setBool('isdarktheme', isdarktheme);
+                    },
+                  ),
+                  Icon(Icons.dark_mode,color: Darktheme().fontColor(isdarktheme),),
+                ],
+              ),
+            ],
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Darktheme().mainColor(isdarktheme),
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -124,13 +167,13 @@ class FoodSection extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Darktheme().mainColor(isdarktheme),
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
               titleName,
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Darktheme().fontColor(isdarktheme)),
             ),
           ),
         ],
@@ -157,7 +200,7 @@ class BoxMenu extends StatelessWidget {
       width: 200,
       height: 230,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Darktheme().mainColor(isdarktheme),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Column(
@@ -186,16 +229,19 @@ class BoxMenu extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
+                          color: Darktheme().fontColor(isdarktheme)
                         ),
+                        
                       ),
                       Row(
                         spacing: 5,
                         children: [
                           Text(
                             price.toStringAsFixed(2),
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 20,color: Darktheme().fontColor(isdarktheme)),
+                            
                           ),
-                          Text("฿", style: TextStyle(fontSize: 20)),
+                          Text("฿", style: TextStyle(fontSize: 20,color: Darktheme().fontColor(isdarktheme))),
                         ],
                       ),
                     ],
@@ -262,7 +308,7 @@ class _BuyItemState extends State<BuyItem> {
       icon:
           (_isbought
               ? Icon(color: Colors.green, Icons.add_box, size: 50)
-              : Icon(Icons.add_box_outlined, size: 50)),
+              : Icon(Icons.add_box_outlined, size: 50,color: Darktheme().fontColor(isdarktheme),)),
       onPressed: _togglebought,
     );
   }
